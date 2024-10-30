@@ -1,0 +1,33 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: 29px;
+  background-color: var(--color-primary);
+  color: var(--color-btn-text);
+  cursor: pointer;
+  transition: background-color 0.25s;
+  font-family: var(--main-font);
+
+  &__icon {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.small {
+  padding: 12px 25px;
+  font-size: 16px;
+}
+
+.large {
+  padding: 20px 60px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 8%;
+}

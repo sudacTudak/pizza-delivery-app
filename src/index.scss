@@ -1,0 +1,23 @@
+:root {
+  // Colors
+  --color-primary: #fe724c;
+  --color-primary-hover: #df6442;
+  --color-bg-main: #ffffff;
+  --color-btn-text: #ffffff;
+  --color-text: #000000;
+  --color-text-secondary: #bebebe;
+  --color-text-input: #c4c4c4;
+  --color-border-input: #eeeeee;
+  --color-shadow-input: rgba(233, 233, 233, 0.25);
+  --color-separator: #d4d6e0;
+
+  // Fonts
+  --main-font: 'Open Sans', sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  font-family: --main-font;
+}
