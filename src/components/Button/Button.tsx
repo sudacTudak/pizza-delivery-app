@@ -6,14 +6,29 @@ function Button({
   children,
   className,
   size = 'small',
+  iconSrc,
+  iconAlt,
   ...props
 }: ButtonProps) {
   return (
     <button
-      className={cn(styles['button'], styles[size], className)}
+      className={cn(
+        styles['button'],
+        styles[size],
+        {
+          [styles['button_with-icon']]: iconSrc?.trim()
+        },
+        className
+      )}
       {...props}
     >
-      {/* {icon && <span className={styles['button__icon']}>{icon}</span>} */}
+      {iconSrc && (
+        <img
+          src={iconSrc}
+          alt={iconAlt ?? ''}
+          className={styles['button__icon']}
+        />
+      )}
       {children}
     </button>
   );

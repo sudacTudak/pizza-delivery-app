@@ -9,9 +9,16 @@
   transition: background-color 0.25s;
   font-family: var(--main-font);
 
-  &__icon {
-    display: inline-block;
-    margin-right: 10px;
+  &_with-icon {
+    gap: 10px;
+
+    &.small {
+      padding-left: 10px;
+    }
+
+    &.large {
+      padding-left: 20px;
+    }
   }
 
   &:hover {
@@ -25,7 +32,7 @@
 }
 
 .large {
-  padding: 20px 60px;
+  padding: 20px 50px;
   font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
