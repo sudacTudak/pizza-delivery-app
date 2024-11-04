@@ -14,7 +14,11 @@
   --color-border-input: #eeeeee;
   --color-border-search: #efefef;
   --color-shadow-input: rgba(233, 233, 233, 0.25);
+  --color-shadow-product-card: #d3d1d8;
   --color-separator: #d4d6e0;
+
+  // Color RGB
+  --color-primary-rgb: 254, 114, 76;
 
   // Fonts
   --main-font: 'Open Sans', sans-serif;
@@ -42,4 +46,9 @@ body {
 #root {
   height: 100%;
   width: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
 }

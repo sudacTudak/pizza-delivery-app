@@ -18,8 +18,10 @@ function Layout() {
               />
             </div>
             <div className={styles['user__info']}>
-              <span className={styles['user__name']}>Антон Ларичев</span>
-              <span className={styles['user__email']}>alaricode@ya.ru</span>
+              <span className={styles['user__name']}>Судаков Вячеслав</span>
+              <span className={styles['user__email']}>
+                sudactudak.webdev@gmail.com
+              </span>
             </div>
           </div>
           <Nav className={styles['sidebar__nav']} />
