@@ -7,6 +7,7 @@ import MenuPage from './pages/MenuPage/MenuPage.tsx';
 import Cart from './pages/Cart/Cart';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Layout from './layout/MainLayout/MainLayout.tsx';
+import ProductPage from './pages/ProductPage/ProductPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,12 +19,12 @@ const router = createBrowserRouter([
         element: <MenuPage />
       },
       {
-        path: '/menu',
-        element: <MenuPage />
-      },
-      {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage />
       }
     ]
   },

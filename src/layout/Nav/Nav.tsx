@@ -14,7 +14,7 @@ function Nav({ className }: NavProps) {
                 [styles['nav-link_active']]: isActive
               })
             }
-            to="/menu"
+            to="/"
           >
             <div className={styles['nav-link__icon']}>
               <img src="/menu-icon.svg" alt="Иконка меню" />

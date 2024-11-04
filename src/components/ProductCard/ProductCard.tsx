@@ -17,10 +17,9 @@ const reduceIngredientsArrayToString = (ingredients: string[]) =>
   }, '');
 
 function ProductCard({ productData, className }: ProductCardProps) {
-  const { title, ingredients, price, rating, previewSrc, id } = productData;
+  const { name, ingredients, price, rating, image, id } = productData;
 
   const handleCartBtnClick = (e: MouseEvent) => {
-    // e.stopPropagation();
     console.log(id);
   };
 
@@ -29,7 +28,7 @@ function ProductCard({ productData, className }: ProductCardProps) {
       <article className={cn(styles['product__card'], className)}>
         <div className={styles['product__header']}>
           <div className={styles['product__preview']}>
-            <img src={previewSrc} alt={title} />
+            <img src={image} alt={name} />
           </div>
           <div className={styles['product__price-tag']}>
             <span className={styles['product__price']}>{price}</span>
@@ -48,7 +47,7 @@ function ProductCard({ productData, className }: ProductCardProps) {
           </button>
         </div>
         <div className={styles['product__body']}>
-          <p className={styles['product__title']}>{title}</p>
+          <p className={styles['product__title']}>{name}</p>
           <p className={styles['product__ingredients']}>
             {reduceIngredientsArrayToString(ingredients)}
           </p>
