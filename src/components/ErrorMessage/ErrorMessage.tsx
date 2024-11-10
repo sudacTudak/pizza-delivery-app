@@ -7,7 +7,7 @@ function ErrorMessage({ message, className }: ErrorMessageProps) {
     <div className={cn(styles['error'], className)}>
       <p className={styles['error__text']}>
         <span className={styles['error__label']}>Ошибка:&nbsp;</span>
-        {message}
+        {message || 'Произошла неизвестная ошибка'}
       </p>
     </div>
   );

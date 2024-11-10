@@ -2,12 +2,13 @@
   // Colors
   --color-primary: #fe724c;
   --color-primary-hover: #df6442;
+  --color-error: #f60000;
   --color-text-primary-hover: #ffffff;
   --color-bg-main: #ffffff;
   --color-bg-search: #fcfcfd;
   --color-btn-text: #ffffff;
   --color-text: #000000;
-  --color-text-secondary: #bebebe;
+  --color-text-secondary: #5b5b5e;
   --color-text-input: #c4c4c4;
   --color-text-search: #9aa0b4;
   --color-icons: #9796a1;
@@ -46,6 +47,10 @@ body {
 #root {
   height: 100%;
   width: 100%;
+}
+
+h1 {
+  margin: 0;
 }
 
 .container {

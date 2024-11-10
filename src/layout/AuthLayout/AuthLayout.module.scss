@@ -1,0 +1,28 @@
+.layout {
+  height: 100%;
+  display: flex;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 50%;
+
+    img {
+      max-width: 363px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 50%;
+    border-left: 1px solid var(--color-separator);
+  }
+
+  &__container {
+    max-width: 400px;
+    width: 100%;
+  }
+}

@@ -1,10 +1,17 @@
 import styles from './MainLayout.module.scss';
 import cn from 'classnames';
 import Nav from '../Nav/Nav';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 
 function Layout() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('jwt');
+    navigate('/auth/login');
+  };
+
   return (
     <div className={styles['layout']}>
       <div className={cn(styles['layout__sidebar'], styles['sidebar'])}>
@@ -27,7 +34,11 @@ function Layout() {
           <Nav className={styles['sidebar__nav']} />
         </div>
         <div className={styles['sidebar__bottom']}>
-          <Button iconSrc="/exit-icon.svg" iconAlt="Иконка выхода">
+          <Button
+            iconSrc="/exit-icon.svg"
+            iconAlt="Иконка выхода"
+            onClick={logout}
+          >
             Выйти
           </Button>
         </div>

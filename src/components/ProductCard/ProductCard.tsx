@@ -2,7 +2,6 @@ import styles from './ProductCard.module.scss';
 import cn from 'classnames';
 import { ProductCardProps } from './ProductCard.props';
 import { Link } from 'react-router-dom';
-import { MouseEvent } from 'react';
 
 const reduceIngredientsArrayToString = (ingredients: string[]) =>
   ingredients.reduce((accum, ingr, index, array) => {
@@ -18,10 +17,6 @@ const reduceIngredientsArrayToString = (ingredients: string[]) =>
 
 function ProductCard({ productData, className }: ProductCardProps) {
   const { name, ingredients, price, rating, image, id } = productData;
-
-  const handleCartBtnClick = (e: MouseEvent) => {
-    console.log(id);
-  };
 
   return (
     <Link to={`/product/${id}`} className={styles['product']}>
@@ -39,10 +34,7 @@ function ProductCard({ productData, className }: ProductCardProps) {
             <span className={styles['product__rating']}>{rating}</span>
             <img className={styles['product__rating-icon']} src="/star.svg" />
           </div>
-          <button
-            className={styles['product__cart-btn']}
-            onClick={handleCartBtnClick}
-          >
+          <button className={styles['product__cart-btn']}>
             <img src="/cart.svg" alt="Добавить в корзину" />
           </button>
         </div>

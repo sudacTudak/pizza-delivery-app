@@ -19,11 +19,6 @@ function MenuPage() {
     try {
       setIsLoading(true);
       setError(undefined);
-      await new Promise<void>((resolve) => {
-        setTimeout(() => {
-          resolve();
-        }, 2000);
-      });
       const { data } = await axios.get<Product[]>(`${API_HOST}/products`);
       setProducts(data);
       setIsLoading(false);
