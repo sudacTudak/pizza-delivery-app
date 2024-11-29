@@ -1,10 +1,12 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux-hooks';
+import { selectUserState } from '../store/user.selectors';
 
 export const RequireAuth = ({ children }: { children: ReactNode }) => {
-  const token = localStorage.getItem('jwt');
+  const { jwt } = useAppSelector(selectUserState);
 
-  if (!token) {
+  if (!jwt) {
     return <Navigate to="/auth/login" replace />;
   }
 

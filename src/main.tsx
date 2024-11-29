@@ -16,6 +16,8 @@ import AuthLayout from './layout/AuthLayout/AuthLayout.tsx';
 import LoginPage from './pages/AuthPages/LoginPage.tsx';
 import RegisterPage from './pages/AuthPages/RegisterPage.tsx';
 import { RequireAuth } from './helpers/RequireAuth.tsx';
+import { Provider } from 'react-redux';
+import { store } from './store/store.ts';
 
 const MenuPage = lazy(() => import('./pages/MenuPage/MenuPage'));
 
@@ -76,6 +78,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

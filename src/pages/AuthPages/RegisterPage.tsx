@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
-import { FormEvent, useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import { API_HOST } from '../../helpers/API';
-import { AuthResponse } from '../../interfaces/auth.interface';
+import { FormEvent, useEffect } from 'react';
+import { register } from '../../store/user.thunks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { selectUserState } from '../../store/user.selectors';
 
 export interface RegisterForm {
   email: {
@@ -22,12 +22,19 @@ export interface RegisterForm {
 }
 
 function RegisterPage() {
-  const [requestError, setRequestError] = useState<string | null>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { jwt, registerErrorMessage } = useAppSelector(selectUserState);
+
+  useEffect(() => {
+    if (jwt) {
+      navigate('/');
+    }
+  }, [jwt]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setRequestError(null);
+
     const target = e.target as typeof e.target & RegisterForm;
     const { email, password, name } = target;
 
@@ -39,32 +46,16 @@ function RegisterPage() {
     password: string,
     name: string
   ) => {
-    try {
-      const { data } = await axios.post<AuthResponse>(
-        `${API_HOST}/auth/register`,
-        {
-          email,
-          password,
-          name
-        }
-      );
-
-      console.log(data);
-      localStorage.setItem('jwt', data.access_token);
-      navigate('/');
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        console.error(err.message);
-        setRequestError(err.response?.data.message);
-      }
-    }
+    dispatch(register({ email, password, name }));
   };
 
   return (
     <div className={styles['auth-page']}>
       <Headling className={styles['auth-page__title']}>Регистрация</Headling>
-      {requestError && (
-        <div className={styles['auth-page__request-error']}>{requestError}</div>
+      {registerErrorMessage && (
+        <div className={styles['auth-page__request-error']}>
+          {registerErrorMessage}
+        </div>
       )}
       <form onSubmit={handleSubmit} className={styles['auth-page__form']}>
         <div className={styles['auth-page__fields']}>
@@ -86,7 +77,6 @@ function RegisterPage() {
           <InputWithLabel
             label="Ваше имя"
             placeholder="Имя"
-            type="name"
             name="name"
             id="name"
             className={styles['auth-page__field']}

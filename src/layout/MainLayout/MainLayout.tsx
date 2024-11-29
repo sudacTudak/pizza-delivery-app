@@ -3,12 +3,23 @@ import cn from 'classnames';
 import Nav from '../Nav/Nav';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { userActions } from '../../store/user.slice';
+import { useEffect } from 'react';
+import { loadUserProfile } from '../../store/user.thunks';
+import { selectUserProfile } from '../../store/user.selectors';
 
 function Layout() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const profile = useAppSelector(selectUserProfile);
+
+  useEffect(() => {
+    dispatch(loadUserProfile());
+  }, []);
 
   const logout = () => {
-    localStorage.removeItem('jwt');
+    dispatch(userActions.logout());
     navigate('/auth/login');
   };
 
@@ -25,10 +36,8 @@ function Layout() {
               />
             </div>
             <div className={styles['user__info']}>
-              <span className={styles['user__name']}>Судаков Вячеслав</span>
-              <span className={styles['user__email']}>
-                sudactudak.webdev@gmail.com
-              </span>
+              <span className={styles['user__name']}>{profile?.name}</span>
+              <span className={styles['user__email']}>{profile?.email}</span>
             </div>
           </div>
           <Nav className={styles['sidebar__nav']} />

@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
-import { FormEvent, useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import { API_HOST } from '../../helpers/API';
-import { AuthResponse } from '../../interfaces/auth.interface';
+import { FormEvent, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { selectUserState } from '../../store/user.selectors';
+import { login } from '../../store/user.thunks';
 
 export interface LoginForm {
   email: {
@@ -19,44 +19,36 @@ export interface LoginForm {
 }
 
 function LoginPage() {
-  const [requestError, setRequestError] = useState<string | null>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { jwt, loginErrorMessage } = useAppSelector(selectUserState);
 
-  const handleSubmit = async (e: FormEvent) => {
+  useEffect(() => {
+    if (jwt) {
+      navigate('/');
+    }
+  }, [jwt]);
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setRequestError(null);
+
     const target = e.target as typeof e.target & LoginForm;
     const { email, password } = target;
 
     sendLogin(email.value, password.value);
   };
 
-  const sendLogin = async (email: string, password: string) => {
-    try {
-      const { data } = await axios.post<AuthResponse>(
-        `${API_HOST}/auth/login`,
-        {
-          email,
-          password
-        }
-      );
-
-      console.log(data);
-      localStorage.setItem('jwt', data.access_token);
-      navigate('/');
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        console.error(err.message);
-        setRequestError(err.response?.data.message);
-      }
-    }
+  const sendLogin = (email: string, password: string) => {
+    dispatch(login({ email, password }));
   };
 
   return (
     <div className={styles['auth-page']}>
       <Headling className={styles['auth-page__title']}>Вход</Headling>
-      {requestError && (
-        <div className={styles['auth-page__request-error']}>{requestError}</div>
+      {loginErrorMessage && (
+        <div className={styles['auth-page__request-error']}>
+          {loginErrorMessage}
+        </div>
       )}
       <form onSubmit={handleSubmit} className={styles['auth-page__form']}>
         <div className={styles['auth-page__fields']}>
