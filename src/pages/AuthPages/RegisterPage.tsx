@@ -5,9 +5,9 @@ import Button from '../../components/Button/Button';
 import Headling from '../../components/Headling/Headling';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import { FormEvent, useEffect } from 'react';
-import { register } from '../../store/user.thunks';
+import { register } from '../../store/user/user.thunks';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { selectUserState } from '../../store/user.selectors';
+import { selectUserState } from '../../store/user/user.selectors';
 
 export interface RegisterForm {
   email: {

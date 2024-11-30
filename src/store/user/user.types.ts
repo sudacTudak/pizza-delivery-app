@@ -1,4 +1,4 @@
-import { UserProfile } from '../interfaces/userProfile.interface';
+import { UserProfile } from '../../interfaces/userProfile.interface';
 
 export interface UserPersistentState {
   jwt: string | null;

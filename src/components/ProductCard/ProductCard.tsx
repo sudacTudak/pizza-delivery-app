@@ -2,6 +2,9 @@ import styles from './ProductCard.module.scss';
 import cn from 'classnames';
 import { ProductCardProps } from './ProductCard.props';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux-hooks';
+import { cartActions } from '../../store/cart/cart.slice';
+import { MouseEvent } from 'react';
 
 const reduceIngredientsArrayToString = (ingredients: string[]) =>
   ingredients.reduce((accum, ingr, index, array) => {
@@ -17,6 +20,12 @@ const reduceIngredientsArrayToString = (ingredients: string[]) =>
 
 function ProductCard({ productData, className }: ProductCardProps) {
   const { name, ingredients, price, rating, image, id } = productData;
+  const dispatch = useAppDispatch();
+
+  const addToCart = (e: MouseEvent) => {
+    e.preventDefault();
+    dispatch(cartActions.addItem({ id }));
+  };
 
   return (
     <Link to={`/product/${id}`} className={styles['product']}>
@@ -34,7 +43,7 @@ function ProductCard({ productData, className }: ProductCardProps) {
             <span className={styles['product__rating']}>{rating}</span>
             <img className={styles['product__rating-icon']} src="/star.svg" />
           </div>
-          <button className={styles['product__cart-btn']}>
+          <button className={styles['product__cart-btn']} onClick={addToCart}>
             <img src="/cart.svg" alt="Добавить в корзину" />
           </button>
         </div>

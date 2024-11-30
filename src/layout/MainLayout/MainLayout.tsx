@@ -4,10 +4,10 @@ import Nav from '../Nav/Nav';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { userActions } from '../../store/user.slice';
+import { userActions } from '../../store/user/user.slice';
 import { useEffect } from 'react';
-import { loadUserProfile } from '../../store/user.thunks';
-import { selectUserProfile } from '../../store/user.selectors';
+import { loadUserProfile } from '../../store/user/user.thunks';
+import { selectUserProfile } from '../../store/user/user.selectors';
 
 function Layout() {
   const navigate = useNavigate();

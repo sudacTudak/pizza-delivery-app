@@ -2,8 +2,11 @@ import styles from './Nav.module.scss';
 import cn from 'classnames';
 import { NavProps } from './Nav.props';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 function Nav({ className }: NavProps) {
+  const totalCount = useAppSelector((state) => state.cart.totalCount);
+
   return (
     <nav className={cn(styles['nav'], className)}>
       <ul className={styles['nav__list']}>
@@ -35,7 +38,7 @@ function Nav({ className }: NavProps) {
               <img src="/cart-icon.svg" alt="Иконка корзины" />
             </div>
             <div className={styles['nav-link__title']}>Корзина</div>
-            <div className={styles['nav-link__counter']}>2</div>
+            <div className={styles['nav-link__counter']}>{totalCount}</div>
           </NavLink>
         </li>
       </ul>

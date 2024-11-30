@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadState } from '../helpers/storage';
+import { loadState } from '../../helpers/storage';
 import { UserPersistentState, UserState } from './user.types';
 import { loadUserProfile, login, register } from './user.thunks';
 

@@ -6,8 +6,8 @@ import Headling from '../../components/Headling/Headling';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import { FormEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { selectUserState } from '../../store/user.selectors';
-import { login } from '../../store/user.thunks';
+import { selectUserState } from '../../store/user/user.selectors';
+import { login } from '../../store/user/user.thunks';
 
 export interface LoginForm {
   email: {

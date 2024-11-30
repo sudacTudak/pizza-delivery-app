@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { JWT_PERSISTENT_STATE, userReducer } from './user.slice';
+import { JWT_PERSISTENT_STATE, userReducer } from './user/user.slice';
 import { saveState } from '../helpers/storage';
-import { UserPersistentState } from './user.types';
+import { UserPersistentState } from './user/user.types';
+import { cartReducer } from './cart/cart.slice';
 
 export const store = configureStore({
   reducer: {
-    user: userReducer
+    user: userReducer,
+    cart: cartReducer
   },
   devTools: import.meta.env.MODE === 'development'
 });

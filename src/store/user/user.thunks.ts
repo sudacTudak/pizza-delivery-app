@@ -1,13 +1,13 @@
 import axios, { AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { GetUserProfileResponse } from '../interfaces/getUserProfile.response';
-import { LoginDTO, RegisterDTO } from '../interfaces/auth.dto';
-import { AuthResponse } from '../interfaces/auth.response';
+import { GetUserProfileResponse } from '../../interfaces/getUserProfile.response';
+import { LoginDTO, RegisterDTO } from '../../interfaces/auth.dto';
+import { AuthResponse } from '../../interfaces/auth.response';
 
-import { API_HOST } from '../helpers/API';
-import { UserProfile } from '../interfaces/userProfile.interface';
-import { RootState } from './store';
+import { API_HOST } from '../../helpers/API';
+import { UserProfile } from '../../interfaces/userProfile.interface';
+import { RootState } from '../store';
 
 export const loadUserProfile = createAsyncThunk<
   UserProfile | undefined,
