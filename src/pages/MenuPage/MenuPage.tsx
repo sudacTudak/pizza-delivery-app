@@ -1,6 +1,12 @@
 import styles from './MenuPage.module.scss';
 import axios, { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  Suspense,
+  useDeferredValue,
+  useEffect,
+  useState
+} from 'react';
 import cn from 'classnames';
 import Headling from '../../components/Headling/Headling';
 import Search from '../../components/Search/Search';
@@ -12,14 +18,21 @@ import MenuList from './MenuList/MenuList';
 
 function MenuPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchValue, setSearchValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
 
-  const getMenu = async () => {
+  useEffect(() => {
+    getMenu(searchValue);
+  }, [searchValue]);
+
+  const getMenu = async (searchValue: string) => {
     try {
       setIsLoading(true);
       setError(undefined);
-      const { data } = await axios.get<Product[]>(`${API_HOST}/products`);
+      const { data } = await axios.get<Product[]>(
+        `${API_HOST}/products?limit=1000&offset=0&name=${searchValue}`
+      );
       setProducts(data);
       setIsLoading(false);
       return true;
@@ -33,21 +46,28 @@ function MenuPage() {
     }
   };
 
-  useEffect(() => {
-    getMenu();
-  }, []);
+  const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
 
   return (
     <>
       <div className={styles['header']}>
         <div className={cn(styles['header__container'], 'container')}>
           <Headling className={styles['header__search']}>Меню</Headling>
-          <Search />
+          <Search value={searchValue} onChange={handleChangeSearch} />
         </div>
       </div>
       <main className={styles['main']}>
-        <div className="container">
-          {!isLoading && <MenuList products={products} />}
+        <div className={cn(styles['main__container'], 'container')}>
+          {!isLoading && products.length > 0 && (
+            <MenuList products={products} />
+          )}
+          {!isLoading && products.length === 0 && (
+            <div className={styles['not-found']}>
+              Упс, не найдено блюд по запросу
+            </div>
+          )}
           {isLoading && <Loader />}
           {error && <ErrorMessage message={error} />}
         </div>

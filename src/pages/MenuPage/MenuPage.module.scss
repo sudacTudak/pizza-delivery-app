@@ -9,3 +9,18 @@
     max-width: 260px;
   }
 }
+.main {
+  height: 100%;
+  &__container {
+    height: 100%;
+  }
+}
+.not-found {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: 20px;
+  font-weight: 500;
+}
