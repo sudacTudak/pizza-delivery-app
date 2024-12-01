@@ -1,0 +1,38 @@
+.icon-button {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+.outlined {
+  border-color: var(--color-primary);
+}
+
+.filled {
+  background-color: var(--color-primary);
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.text {
+  border: none;
+}
+
+.small {
+  width: 28px;
+  height: 28px;
+}
+
+.large {
+  width: 34px;
+  height: 34px;
+}

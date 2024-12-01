@@ -1,12 +1,6 @@
 import styles from './MenuPage.module.scss';
 import axios, { AxiosError } from 'axios';
-import {
-  ChangeEvent,
-  Suspense,
-  useDeferredValue,
-  useEffect,
-  useState
-} from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
 import Headling from '../../components/Headling/Headling';
 import Search from '../../components/Search/Search';

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { cartActions } from '../../store/cart/cart.slice';
 import { MouseEvent } from 'react';
+import IconButton from '../IconButton/IconButton';
 
 const reduceIngredientsArrayToString = (ingredients: string[]) =>
   ingredients.reduce((accum, ingr, index, array) => {
@@ -43,9 +44,12 @@ function ProductCard({ productData, className }: ProductCardProps) {
             <span className={styles['product__rating']}>{rating}</span>
             <img className={styles['product__rating-icon']} src="/star.svg" />
           </div>
-          <button className={styles['product__cart-btn']} onClick={addToCart}>
-            <img src="/cart.svg" alt="Добавить в корзину" />
-          </button>
+          <IconButton
+            className={styles['product__cart-btn']}
+            onClick={addToCart}
+            iconSrc="/cart.svg"
+            iconAlt="Добавить в корзину"
+          />
         </div>
         <div className={styles['product__body']}>
           <p className={styles['product__title']}>{name}</p>
