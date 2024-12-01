@@ -1,10 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartState } from './cart.types';
+import { CartState, CartPersistentState } from './cart.types';
+import { loadState } from '../../helpers/storage';
 
-const initialState: CartState = {
+export const CART_PERSISTENT_STATE_KEY = 'userCart';
+
+const initialState: CartState = loadState<CartPersistentState>(
+  CART_PERSISTENT_STATE_KEY
+) ?? {
   items: [],
-  totalCount: 0,
-  totalCost: 0
+  totalCount: 0
 };
 
 export const cartSlice = createSlice({

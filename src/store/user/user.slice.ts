@@ -3,10 +3,10 @@ import { loadState } from '../../helpers/storage';
 import { UserPersistentState, UserState } from './user.types';
 import { loadUserProfile, login, register } from './user.thunks';
 
-export const JWT_PERSISTENT_STATE = 'userData';
+export const JWT_PERSISTENT_STATE_KEY = 'userData';
 
 const initialState: UserState = {
-  jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE)?.jwt ?? null
+  jwt: loadState<UserPersistentState>(JWT_PERSISTENT_STATE_KEY)?.jwt ?? null
 };
 
 export const userSlice = createSlice({

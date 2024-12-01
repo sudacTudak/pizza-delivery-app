@@ -6,5 +6,6 @@ export interface CartItem {
 export interface CartState {
   items: CartItem[];
   totalCount: number;
-  totalCost: number;
 }
+
+export type CartPersistentState = Pick<CartState, 'items' | 'totalCount'>;
