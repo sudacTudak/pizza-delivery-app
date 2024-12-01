@@ -1,0 +1,13 @@
+.cart-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 306px;
+  overflow-y: auto;
+
+  &__item {
+    &:not(&:last-of-type) {
+      margin-bottom: 30px;
+    }
+  }
+}

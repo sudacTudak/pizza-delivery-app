@@ -60,6 +60,22 @@ export const cartSlice = createSlice({
 
       return { ...state, items: newItems, totalCount: state.totalCount - 1 };
     },
+    deleteItem: (state, action: PayloadAction<{ id: number }>) => {
+      const productId = action.payload.id;
+      const deletingItem = state.items.find(
+        (item) => item.productId === productId
+      );
+
+      if (!deletingItem) {
+        return state;
+      }
+
+      return {
+        ...state,
+        items: state.items.filter((item) => item.productId !== productId),
+        totalCount: state.totalCount - deletingItem.count
+      };
+    },
     clearCart: () => {
       return initialState;
     }
