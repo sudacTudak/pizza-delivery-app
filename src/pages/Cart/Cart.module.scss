@@ -1,0 +1,14 @@
+.cart {
+  padding-top: 40px;
+  max-width: 840px;
+
+  &__price-list {
+    padding-top: 35px;
+    margin-bottom: 70px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
