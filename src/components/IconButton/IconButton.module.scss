@@ -12,6 +12,12 @@
 
 .outlined {
   border-color: var(--color-primary);
+  background-color: transparent;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
 }
 
 .filled {
@@ -25,6 +31,12 @@
 
 .text {
   border: none;
+  background-color: transparent;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
 }
 
 .small {
