@@ -58,9 +58,7 @@ function MenuPage() {
             <MenuList products={products} />
           )}
           {!isLoading && products.length === 0 && (
-            <div className={styles['not-found']}>
-              Упс, не найдено блюд по запросу
-            </div>
+            <div className="not-found">Упс, не найдено блюд по запросу</div>
           )}
           {isLoading && <Loader />}
           {error && <ErrorMessage message={error} />}

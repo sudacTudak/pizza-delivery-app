@@ -1,6 +1,16 @@
 .cart {
-  padding-top: 40px;
-  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__content {
+    flex: 1 1 auto;
+    padding-top: 40px;
+  }
+
+  &__container {
+    max-width: 840px;
+  }
 
   &__price-list {
     padding-top: 35px;

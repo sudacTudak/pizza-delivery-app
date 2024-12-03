@@ -53,33 +53,35 @@ function CartPage() {
   }, [items]);
 
   return (
-    <>
-      <Headling>Корзина</Headling>
-      <div className={styles['cart']}>
-        {items.length === 0 && <div>Корзина пуста</div>}
-        {items.length > 0 && (
-          <>
-            <CartList
-              cartItems={items}
-              cartProducts={cartProducts}
-              className={styles['cart__product-list']}
-            />
-            <div className={styles['cart__price-list']}>
-              <PriceList
-                totalPrice={totalPrice}
-                deliveryPrice={DELIVERY_PRICE}
-                className={styles['cart__price-list']}
+    <div className={styles['cart']}>
+      <Headling className={styles['cart__title']}>Корзина</Headling>
+      <div className={styles['cart__content']}>
+        {items.length === 0 && <div className="not-found">Корзина пуста</div>}
+        <div className={styles['cart__container']}>
+          {items.length > 0 && (
+            <>
+              <CartList
+                cartItems={items}
+                cartProducts={cartProducts}
+                className={styles['cart__product-list']}
               />
-            </div>
-            <div className={styles['cart__footer']}>
-              <Button size="large" onClick={checkout}>
-                Оформить
-              </Button>
-            </div>
-          </>
-        )}
+              <div className={styles['cart__price-list']}>
+                <PriceList
+                  totalPrice={totalPrice}
+                  deliveryPrice={DELIVERY_PRICE}
+                  className={styles['cart__price-list']}
+                />
+              </div>
+              <div className={styles['cart__footer']}>
+                <Button size="large" onClick={checkout}>
+                  Оформить
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
