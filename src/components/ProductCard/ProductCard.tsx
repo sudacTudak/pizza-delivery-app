@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks/redux-hooks';
 import { cartActions } from '../../store/cart/cart.slice';
 import { MouseEvent } from 'react';
 import IconButton from '../IconButton/IconButton';
+import RatingTag from '../RatingTag/RatingTag';
 
 const reduceIngredientsArrayToString = (ingredients: string[]) =>
   ingredients.reduce((accum, ingr, index, array) => {
@@ -40,10 +41,10 @@ function ProductCard({ productData, className }: ProductCardProps) {
             &nbsp;
             <span className={styles['product__currency']}>₽</span>
           </div>
-          <div className={styles['product__rating-tag']}>
-            <span className={styles['product__rating']}>{rating}</span>
-            <img className={styles['product__rating-icon']} src="/star.svg" />
-          </div>
+          <RatingTag
+            rating={rating}
+            className={styles['product__rating-tag']}
+          />
           <IconButton
             className={styles['product__cart-btn']}
             onClick={addToCart}
