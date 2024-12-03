@@ -1,7 +1,7 @@
 import styles from './CartPage.module.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Headling from '../../components/Headling/Headling';
+import Heading from '../../components/Heading/Heading';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { selectCartState } from '../../store/cart/cart.selectors';
 import { Product } from '../../interfaces/product.interface';
@@ -54,7 +54,7 @@ function CartPage() {
 
   return (
     <div className={styles['cart']}>
-      <Headling className={styles['cart__title']}>Корзина</Headling>
+      <Heading className={styles['cart__title']}>Корзина</Heading>
       <div className={styles['cart__content']}>
         {items.length === 0 && <div className="not-found">Корзина пуста</div>}
         <div className={styles['cart__container']}>

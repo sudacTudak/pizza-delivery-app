@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
-export interface HeadlingProps extends HTMLAttributes<HTMLHeadingElement> {
+export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   children: ReactNode;
 }

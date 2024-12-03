@@ -2,7 +2,7 @@ import styles from './AuthPage.module.scss';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import Headling from '../../components/Headling/Headling';
+import Heading from '../../components/Heading/Heading';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import { FormEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
@@ -44,7 +44,7 @@ function LoginPage() {
 
   return (
     <div className={styles['auth-page']}>
-      <Headling className={styles['auth-page__title']}>Вход</Headling>
+      <Heading className={styles['auth-page__title']}>Вход</Heading>
       {loginErrorMessage && (
         <div className={styles['auth-page__request-error']}>
           {loginErrorMessage}

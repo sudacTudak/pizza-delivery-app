@@ -2,7 +2,7 @@ import styles from './MenuPage.module.scss';
 import axios, { AxiosError } from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
-import Headling from '../../components/Headling/Headling';
+import Heading from '../../components/Heading/Heading';
 import Search from '../../components/Search/Search';
 import { API_HOST } from '../../helpers/API';
 import { Product } from '../../interfaces/product.interface';
@@ -48,7 +48,7 @@ function MenuPage() {
     <>
       <div className={styles['header']}>
         <div className={cn(styles['header__container'], 'container')}>
-          <Headling className={styles['header__search']}>Меню</Headling>
+          <Heading className={styles['header__search']}>Меню</Heading>
           <Search value={searchValue} onChange={handleChangeSearch} />
         </div>
       </div>

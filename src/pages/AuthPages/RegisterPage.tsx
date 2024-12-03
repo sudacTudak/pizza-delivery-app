@@ -2,7 +2,7 @@ import styles from './AuthPage.module.scss';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-import Headling from '../../components/Headling/Headling';
+import Heading from '../../components/Heading/Heading';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import { FormEvent, useEffect } from 'react';
 import { register } from '../../store/user/user.thunks';
@@ -51,7 +51,7 @@ function RegisterPage() {
 
   return (
     <div className={styles['auth-page']}>
-      <Headling className={styles['auth-page__title']}>Регистрация</Headling>
+      <Heading className={styles['auth-page__title']}>Регистрация</Heading>
       {registerErrorMessage && (
         <div className={styles['auth-page__request-error']}>
           {registerErrorMessage}
