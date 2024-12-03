@@ -1,7 +1,7 @@
 import styles from './MenuList.module.scss';
 import cn from 'classnames';
 import { MenuListProps } from './MenuList.props';
-import ProductCard from '../../../components/ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
 
 function MenuList({ products, className, ...props }: MenuListProps) {
   return (
