@@ -4,7 +4,7 @@ import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 // import MenuPage from './pages/MenuPage/MenuPage.tsx';
-import Cart from './pages/Cart/Cart';
+import CartPage from './pages/CartPage/CartPage.tsx';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Layout from './layout/MainLayout/MainLayout.tsx';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
@@ -18,6 +18,7 @@ import RegisterPage from './pages/AuthPages/RegisterPage.tsx';
 import { RequireAuth } from './helpers/RequireAuth.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
+import SuccessOrderPage from './pages/SuccessOrderPage/SuccessOrderPage.tsx';
 
 const MenuPage = lazy(() => import('./pages/MenuPage/MenuPage'));
 
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />
+        element: <CartPage />
       },
       {
         path: '/product/:id',
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
               .then((data) => data)
           });
         }
+      },
+      {
+        path: '/success',
+        element: <SuccessOrderPage />
       }
     ]
   },

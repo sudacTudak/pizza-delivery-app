@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartState, CartPersistentState } from './cart.types';
 import { loadState } from '../../helpers/storage';
+import { makeOrder } from './cart.thunks';
 
 export const CART_PERSISTENT_STATE_KEY = 'userCart';
 
-const initialState: CartState = loadState<CartPersistentState>(
-  CART_PERSISTENT_STATE_KEY
-) ?? {
+const defaultState: CartState = {
   items: [],
   totalCount: 0
 };
+
+const initialState: CartState =
+  loadState<CartPersistentState>(CART_PERSISTENT_STATE_KEY) ?? defaultState;
 
 export const cartSlice = createSlice({
   name: '@@cart',
@@ -81,10 +83,10 @@ export const cartSlice = createSlice({
       };
     },
     clearCart: () => {
-      return initialState;
+      return defaultState;
     }
   },
-  extraReducers: (builder) => {}
+  extraReducers: () => {}
 });
 
 export const cartReducer = cartSlice.reducer;

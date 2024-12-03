@@ -1,21 +1,24 @@
-import styles from './Cart.module.scss';
-import cn from 'classnames';
+import styles from './CartPage.module.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Headling from '../../components/Headling/Headling';
-import { useAppSelector } from '../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { selectCartState } from '../../store/cart/cart.selectors';
 import { Product } from '../../interfaces/product.interface';
 import { API_HOST } from '../../helpers/API';
 import CartList from '../../components/CartList/CartList';
 import PriceList from '../../components/PriceList/PriceList';
 import Button from '../../components/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { makeOrder } from '../../store/cart/cart.thunks';
 
 const DELIVERY_PRICE = 169;
 
-function Cart() {
+function CartPage() {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const { items } = useAppSelector(selectCartState);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const totalPrice = items.reduce((acc, item) => {
     const product = cartProducts.find(
       (product) => product.id === item.productId
@@ -38,6 +41,11 @@ function Cart() {
       items.map((item) => getProduct(item.productId))
     );
     setCartProducts(res);
+  };
+
+  const checkout = async () => {
+    await dispatch(makeOrder());
+    navigate('/success');
   };
 
   useEffect(() => {
@@ -64,7 +72,7 @@ function Cart() {
               />
             </div>
             <div className={styles['cart__footer']}>
-              <Button size="large" onClick={() => {}}>
+              <Button size="large" onClick={checkout}>
                 Оформить
               </Button>
             </div>
@@ -75,4 +83,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default CartPage;
