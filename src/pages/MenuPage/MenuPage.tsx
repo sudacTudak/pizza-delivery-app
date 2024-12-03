@@ -8,7 +8,7 @@ import { API_HOST } from '../../helpers/API';
 import { Product } from '../../interfaces/product.interface';
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import MenuList from './MenuList/MenuList';
+import MenuList from '../../components/MenuList/MenuList';
 
 function MenuPage() {
   const [products, setProducts] = useState<Product[]>([]);
