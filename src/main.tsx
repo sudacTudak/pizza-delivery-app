@@ -3,9 +3,8 @@ import './index.scss';
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
-// import MenuPage from './pages/MenuPage/MenuPage.tsx';
 import CartPage from './pages/CartPage/CartPage.tsx';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
 import Layout from './layout/MainLayout/MainLayout.tsx';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
 import axios from 'axios';
@@ -48,10 +47,9 @@ const router = createBrowserRouter([
         element: <ProductPage />,
         errorElement: <ErrorPage />,
         loader: async ({ params }) => {
+          const data = axios.get<Product>(`${API_HOST}/products/${params.id}`);
           return defer({
-            data: axios
-              .get<Product>(`${API_HOST}/products/${params.id}`)
-              .then((data) => data)
+            data
           });
         }
       },
