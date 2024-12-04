@@ -4,7 +4,7 @@ import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, defer, RouterProvider } from 'react-router-dom';
 import CartPage from './pages/CartPage/CartPage.tsx';
-import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
+import ErrorPage from './pages/ErrorPages/ErrorPage.tsx';
 import Layout from './layout/MainLayout/MainLayout.tsx';
 import ProductPage from './pages/ProductPage/ProductPage.tsx';
 import axios from 'axios';
@@ -18,6 +18,7 @@ import { RequireAuth } from './helpers/RequireAuth.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 import SuccessOrderPage from './pages/SuccessOrderPage/SuccessOrderPage.tsx';
+import NotFoundErrorPage from './pages/ErrorPages/NotFoundErrorPage.tsx';
 
 const MenuPage = lazy(() => import('./pages/MenuPage/MenuPage'));
 
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <ErrorPage />
+    element: <NotFoundErrorPage />
   }
 ]);
 
