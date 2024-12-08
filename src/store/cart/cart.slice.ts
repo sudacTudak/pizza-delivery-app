@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartState, CartPersistentState } from './cart.types';
 import { loadState } from '../../helpers/storage';
-import { makeOrder } from './cart.thunks';
 
 export const CART_PERSISTENT_STATE_KEY = 'userCart';
 
